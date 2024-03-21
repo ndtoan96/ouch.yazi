@@ -2,35 +2,38 @@ local M = {}
 
 function M:peek()
   local child = Command("ouch")
-      :args({ "l", "-t", tostring(self.file.url) })
+      :args({ "l", "-t", "-y", tostring(self.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
       :spawn()
-  local limit = self.area.h - 1
+  local limit = self.area.h
   local file_name = string.match(tostring(self.file.url), ".*[/\\](.*)")
-  -- Discard the first line, which contains the full path, replace it with file name
-  child:read_line()
-  local i, lines = 0, string.format("\x1b[2m📁 %s\x1b[0m\n", file_name)
-  -- Read line by line until finish or until limit reached
+  local lines = string.format("\x1b[2m📁 %s\x1b[0m\n", file_name)
+  local num_lines = 1
+  local num_skip = 0
   repeat
-    local next, event = child:read_line()
+    local line, event = child:read_line()
     if event == 1 then
       ya.err(tostring(event))
     elseif event ~= 0 then
       break
     end
 
-    i = i + 1
-    if i > self.skip then
-      lines = lines .. next
+    if line:find('Archive', 1, true) ~= 1 and line:find('[INFO]', 1, true) ~= 1 then
+      if num_skip >= self.skip then
+        lines = lines .. line
+        num_lines = num_lines + 1
+      else
+        num_skip = num_skip + 1
+      end
     end
-  until i >= self.skip + limit
+  until num_lines >= limit
 
   child:start_kill()
-  if self.skip > 0 and i < self.skip + limit then
+  if self.skip > 0 and num_lines < limit then
     ya.manager_emit(
       "peek",
-      { tostring(math.max(0, i - limit)), only_if = tostring(self.file.url), upper_bound = "" }
+      { tostring(math.max(0, self.skip - (limit - num_lines))), only_if = tostring(self.file.url), upper_bound = "" }
     )
   else
     ya.preview_widgets(self, { ui.Paragraph.parse(self.area, lines) })
