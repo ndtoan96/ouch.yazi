@@ -4,7 +4,7 @@ An archive previewer plugin for [yazi](https://github.com/sxyazi/yazi), using [o
 
 # Preview
 
-![preview](./ouch.yazi-preview.png)
+![preview](https://github.com/Rolv-Apneseth/ouch.yazi/assets/69486699/ff1930c1-3632-4c21-8671-eca453977d8b)
 
 # Installation
 
