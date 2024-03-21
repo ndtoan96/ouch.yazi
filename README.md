@@ -8,7 +8,7 @@ An archive previewer plugin for [yazi](https://github.com/sxyazi/yazi), using [o
 
 # Installation
 
-Clone the repo inside `~/.config/yazi/plugins/` (Linux) or `%APPDATA%\yazi\config\plugins\` (Windows). Add the below config to `yazi.tom`.
+Make sure you have [ouch](https://github.com/ouch-org/ouch) available in PATH. Then clone the repo inside `~/.config/yazi/plugins/` (Linux) or `%APPDATA%\yazi\config\plugins\` (Windows). Add the below config to `yazi.tom`.
 
 ```toml
 [plugin]
@@ -25,3 +25,7 @@ prepend_previewers = [
 	{ mime = "application/pdf",             run = "ouch" },
 ]
 ```
+
+# Customization
+
+If you want to change the icon or the style of text, you can modify the `init.lua` file directly (all of them are stored in the `lines` variable).
