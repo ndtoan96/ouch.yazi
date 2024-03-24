@@ -24,15 +24,12 @@ Add this to your `yazi.toml`:
 [plugin]
 prepend_previewers = [
 	# Archive previewer
-	{ mime = "application/zip",             run = "ouch" },
-	{ mime = "application/gzip",            run = "ouch" },
+	{ mime = "application/*zip",            run = "ouch" },
 	{ mime = "application/x-tar",           run = "ouch" },
-	{ mime = "application/x-bzip",          run = "ouch" },
 	{ mime = "application/x-bzip2",         run = "ouch" },
 	{ mime = "application/x-7z-compressed", run = "ouch" },
 	{ mime = "application/x-rar",           run = "ouch" },
 	{ mime = "application/xz",              run = "ouch" },
-	{ mime = "application/pdf",             run = "ouch" },
 ]
 ```
 
