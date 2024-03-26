@@ -29,7 +29,7 @@ prepend_previewers = [
 	{ mime = "application/x-bzip2",         run = "ouch" },
 	{ mime = "application/x-7z-compressed", run = "ouch" },
 	{ mime = "application/x-rar",           run = "ouch" },
-	{ mime = "application/xz",              run = "ouch" },
+	{ mime = "application/x-xz",            run = "ouch" },
 ]
 ```
 
