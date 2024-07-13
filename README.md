@@ -49,7 +49,7 @@ For compession, add this to your `keymap.toml`:
 [[manager.prepend_keymap]]
 on = ["C"]
 run = "plugin ouch --args=zip"
-desc = "Compress with ouch"}
+desc = "Compress with ouch"
 ```
 
 The `--args=zip` part tells the plugin that default format is `zip`. You can change that to whatever format you want.
