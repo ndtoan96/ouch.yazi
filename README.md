@@ -40,7 +40,7 @@ prepend_previewers = [
 
 Now go to an archive on Yazi, you should see the archive's content in the preview pane. You can use `Alt-j` and `Alt-k` to roll up and down the preview.
 
-If you want to change the icon or the style of text, you can modify the `init.lua` file directly (all of them are stored in the `lines` variable).
+If you want to change the icon or the style of text, you can modify the `peek` function in `init.lua` file (all of them are stored in the `lines` variable).
 
 ### Compression
 For compession, add this to your `keymap.toml`:
