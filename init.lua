@@ -80,6 +80,8 @@ local get_compression_target = ya.sync(function()
     for _, url in pairs(tab.selected) do
       table.insert(paths, tostring(url))
     end
+    -- The compression targets are aquired, now unselect them
+    ya.manager_emit("escape", {})
   end
   return paths, default_name
 end)
