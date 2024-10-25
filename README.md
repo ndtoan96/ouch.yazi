@@ -10,12 +10,22 @@
 
 ## Installation
 
+If you use latest Yazi from main branch:
 ```bash
 # Linux/macOS
 git clone https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
 
 # Windows
 git clone https://github.com/ndtoan96/ouch.yazi.git %AppData%\yazi\config\plugins\ouch.yazi
+```
+
+If you use Yazi <= 0.3.3
+```bash
+# Linux/macOS
+git clone --branch v0.2.1 --single-branch https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
+
+# Windows
+git clone --branch v0.2.1 --single-branch https://github.com/ndtoan96/ouch.yazi.git %AppData%\yazi\config\plugins\ouch.yazi
 ```
 
 Make sure you have [ouch](https://github.com/ouch-org/ouch) installed and in your `PATH`.
@@ -38,7 +48,7 @@ prepend_previewers = [
 ]
 ```
 
-Now go to an archive on Yazi, you should see the archive's content in the preview pane. You can use `Alt-j` and `Alt-k` to roll up and down the preview.
+Now go to an archive on Yazi, you should see the archive's content in the preview pane. You can use `J` and `K` to roll up and down the preview.
 
 If you want to change the icon or the style of text, you can modify the `peek` function in `init.lua` file (all of them are stored in the `lines` variable).
 
