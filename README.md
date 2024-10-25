@@ -10,7 +10,7 @@
 
 ## Installation
 
-If you use latest Yazi from main branch:
+If you use latest Yazi from main branch
 ```bash
 # Linux/macOS
 git clone https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
