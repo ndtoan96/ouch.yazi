@@ -113,6 +113,8 @@ end
 function M:entry(args)
   local default_fmt = args[1]
 
+  ya.manager_emit("escape", { visual = true })
+
   -- Get the files that need to be compressed and infer a default archive name
   local paths, default_name = get_compression_target()
 
