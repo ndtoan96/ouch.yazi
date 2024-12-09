@@ -1,13 +1,13 @@
 local M = {}
 
-function M:peek()
+function M:peek(job)
   local child = Command("ouch")
-      :args({ "l", "-t", "-y", tostring(self.file.url) })
+      :args({ "l", "-t", "-y", tostring(job.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
       :spawn()
-  local limit = self.area.h
-  local file_name = string.match(tostring(self.file.url), ".*[/\\](.*)")
+  local limit = job.area.h
+  local file_name = string.match(tostring(job.file.url), ".*[/\\](.*)")
   local lines = string.format("📁 \x1b[2m%s\x1b[0m\n", file_name)
   local num_lines = 1
   local num_skip = 0
@@ -20,7 +20,7 @@ function M:peek()
     end
 
     if line:find('Archive', 1, true) ~= 1 and line:find('[INFO]', 1, true) ~= 1 then
-      if num_skip >= self.skip then
+      if num_skip >= job.skip then
         lines = lines .. line
         num_lines = num_lines + 1
       else
@@ -30,23 +30,23 @@ function M:peek()
   until num_lines >= limit
 
   child:start_kill()
-  if self.skip > 0 and num_lines < limit then
+  if job.skip > 0 and num_lines < limit then
     ya.manager_emit(
       "peek",
-      { tostring(math.max(0, self.skip - (limit - num_lines))), only_if = tostring(self.file.url), upper_bound = "" }
+      { tostring(math.max(0, job.skip - (limit - num_lines))), only_if = tostring(job.file.url), upper_bound = "" }
     )
   else
-    ya.preview_widgets(self, { ui.Text(lines):area(self.area) })
+    ya.preview_widgets(job, { ui.Text(lines):area(job.area) })
   end
 end
 
-function M:seek(units)
+function M:seek(job)
   local h = cx.active.current.hovered
-  if h and h.url == self.file.url then
-    local step = math.floor(units * self.area.h / 10)
+  if h and h.url == job.file.url then
+    local step = math.floor(job.units * job.area.h / 10)
     ya.manager_emit("peek", {
       math.max(0, cx.active.preview.skip + step),
-      only_if = tostring(self.file.url),
+      only_if = tostring(job.file.url),
     })
   end
 end
@@ -110,8 +110,8 @@ local function invoke_compress_command(paths, name)
   end
 end
 
-function M:entry(args)
-  local default_fmt = args[1]
+function M:entry(job)
+  local default_fmt = job.args[1]
 
   ya.manager_emit("escape", { visual = true })
 
