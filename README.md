@@ -15,8 +15,11 @@ If you use latest Yazi from main branch
 # Linux/macOS
 git clone https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
 
-# Windows
+# Windows with cmd
 git clone https://github.com/ndtoan96/ouch.yazi.git %AppData%\yazi\config\plugins\ouch.yazi
+
+# Windows with powershell
+git clone https://github.com/ndtoan96/ouch.yazi.git "$($env:APPDATA)\yazi\config\plugins\ouch.yazi"
 ```
 
 If you use Yazi <= 0.3.3
@@ -24,8 +27,11 @@ If you use Yazi <= 0.3.3
 # Linux/macOS
 git clone --branch v0.2.1 --single-branch https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
 
-# Windows
+# Windows with cmd
 git clone --branch v0.2.1 --single-branch https://github.com/ndtoan96/ouch.yazi.git %AppData%\yazi\config\plugins\ouch.yazi
+
+# Windows with powershell
+git clone --branch v0.2.1 --single-branch https://github.com/ndtoan96/ouch.yazi.git "$($env:APPDATA)\yazi\config\plugins\ouch.yazi"
 ```
 
 Make sure you have [ouch](https://github.com/ouch-org/ouch) installed and in your `PATH`.
