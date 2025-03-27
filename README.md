@@ -64,11 +64,13 @@ For compession, add this to your `keymap.toml`:
 ```toml
 [[manager.prepend_keymap]]
 on = ["C"]
-run = "plugin ouch zip"
+run = "plugin ouch"
 desc = "Compress with ouch"
 ```
 
-The `--args=zip` part tells the plugin that default format is `zip`. You can change that to whatever format you want.
+The plugin uses `zip` format by default. You can change the format when you name the output file, `ouch` will detect format based on file extension.
+
+And, for example, if you would like to set `7z` as default format, you can use `plugin ouch 7z`.
 
 ### Decompression
 This plugin does not provide a decompression feature because it already is supported by Yazi.

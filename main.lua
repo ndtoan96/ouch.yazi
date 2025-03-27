@@ -112,6 +112,9 @@ end
 
 function M:entry(job)
   local default_fmt = job.args[1]
+  if default_fmt == nil then
+    default_fmt = "zip"
+  end
 
   ya.manager_emit("escape", { visual = true })
 
