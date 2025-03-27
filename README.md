@@ -64,7 +64,7 @@ For compession, add this to your `keymap.toml`:
 ```toml
 [[manager.prepend_keymap]]
 on = ["C"]
-run = "plugin ouch --args=zip"
+run = "plugin ouch zip"
 desc = "Compress with ouch"
 ```
 
