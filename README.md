@@ -10,7 +10,12 @@
 
 ## Installation
 
-If you use Yazi from latest main branch
+### Yazi package manager
+```bash
+ya pack -a ndtoan96/ouch
+```
+
+### Git
 ```bash
 # Linux/macOS
 git clone https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
@@ -20,18 +25,6 @@ git clone https://github.com/ndtoan96/ouch.yazi.git %AppData%\yazi\config\plugin
 
 # Windows with powershell
 git clone https://github.com/ndtoan96/ouch.yazi.git "$($env:APPDATA)\yazi\config\plugins\ouch.yazi"
-```
-
-If you use Yazi < 0.4.3
-```bash
-# Linux/macOS
-git clone --branch v0.4.0 --single-branch https://github.com/ndtoan96/ouch.yazi.git ~/.config/yazi/plugins/ouch.yazi
-
-# Windows with cmd
-git clone --branch v0.4.0 --single-branch https://github.com/ndtoan96/ouch.yazi.git %AppData%\yazi\config\plugins\ouch.yazi
-
-# Windows with powershell
-git clone --branch v0.4.0 --single-branch https://github.com/ndtoan96/ouch.yazi.git "$($env:APPDATA)\yazi\config\plugins\ouch.yazi"
 ```
 
 Make sure you have [ouch](https://github.com/ouch-org/ouch) installed and in your `PATH`.
