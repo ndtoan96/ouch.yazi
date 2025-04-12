@@ -76,7 +76,7 @@ local get_compression_target = ya.sync(function()
       return
     end
   else
-    default_name = tab.current.cwd:name()
+    default_name = tab.current.cwd.name
     for _, url in pairs(tab.selected) do
       table.insert(paths, tostring(url))
     end
