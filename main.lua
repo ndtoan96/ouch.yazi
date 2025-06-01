@@ -2,7 +2,7 @@ local M = {}
 
 function M:peek(job)
   local child = Command("ouch")
-      :args({ "l", "-t", "-y", tostring(job.file.url) })
+      :arg({ "l", "-t", "-y", tostring(job.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
       :spawn()
@@ -31,12 +31,12 @@ function M:peek(job)
 
   child:start_kill()
   if job.skip > 0 and num_lines < limit then
-    ya.manager_emit(
+    ya.emit(
       "peek",
       { tostring(math.max(0, job.skip - (limit - num_lines))), only_if = tostring(job.file.url), upper_bound = "" }
     )
   else
-    ya.preview_widgets(job, { ui.Text(lines):area(job.area) })
+    ya.preview_widget(job, { ui.Text(lines):area(job.area) })
   end
 end
 
@@ -44,7 +44,7 @@ function M:seek(job)
   local h = cx.active.current.hovered
   if h and h.url == job.file.url then
     local step = math.floor(job.units * job.area.h / 10)
-    ya.manager_emit("peek", {
+    ya.emit("peek", {
       math.max(0, cx.active.preview.skip + step),
       only_if = tostring(job.file.url),
     })
@@ -81,15 +81,15 @@ local get_compression_target = ya.sync(function()
       table.insert(paths, tostring(url))
     end
     -- The compression targets are aquired, now unselect them
-    ya.manager_emit("escape", {})
+    ya.emit("escape", {})
   end
   return paths, default_name
 end)
 
 local function invoke_compress_command(paths, name)
   local cmd_output, err_code = Command("ouch")
-      :args({ "c", "-y" })
-      :args(paths)
+      :arg({ "c", "-y" })
+      :arg(paths)
       :arg(name)
       :stderr(Command.PIPED)
       :output()
@@ -116,7 +116,7 @@ function M:entry(job)
     default_fmt = "zip"
   end
 
-  ya.manager_emit("escape", { visual = true })
+  ya.emit("escape", { visual = true })
 
   -- Get the files that need to be compressed and infer a default archive name
   local paths, default_name = get_compression_target()
