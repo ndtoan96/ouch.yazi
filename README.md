@@ -73,7 +73,7 @@ To decompress with `ouch`, configure the opener in `yazi.toml`.
 ```toml
 [opener]
 extract = [
-	{ run = 'ouch d -y "%*"', desc = "Extract here with ouch", for = "windows" },
+	{ run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
 	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
 ]
 ```
