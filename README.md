@@ -56,7 +56,7 @@ If you want to change the icon or the style of text, you can modify the `peek` f
 For compession, add this to your `keymap.toml`:
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["C"]
 run = "plugin ouch"
 desc = "Compress with ouch"
