@@ -12,7 +12,7 @@
 
 ### Yazi package manager
 ```bash
-ya pack -a ndtoan96/ouch
+ya pkg add ndtoan96/ouch
 ```
 
 ### Git
