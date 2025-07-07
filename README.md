@@ -12,7 +12,7 @@
 
 ### Yazi package manager
 ```bash
-ya pack -a ndtoan96/ouch
+ya pkg add ndtoan96/ouch
 ```
 
 ### Git
@@ -43,8 +43,12 @@ prepend_previewers = [
 	{ mime = "application/x-bzip2",         run = "ouch" },
 	{ mime = "application/x-7z-compressed", run = "ouch" },
 	{ mime = "application/x-rar",           run = "ouch" },
+	{ mime = "application/vnd.rar",         run = "ouch" },
 	{ mime = "application/x-xz",            run = "ouch" },
 	{ mime = "application/xz",              run = "ouch" },
+	{ mime = "application/x-zstd",          run = "ouch" },
+	{ mime = "application/zstd",            run = "ouch" },
+	{ mime = "application/java-archive",    run = "ouch" },
 ]
 ```
 
