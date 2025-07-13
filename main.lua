@@ -126,6 +126,7 @@ function M:entry(job)
     title = "Create archive:",
     value = default_name .. "." .. default_fmt,
     position = { "top-center", y = 3, w = 40 },
+    pos = { "top-center", y = 3, w = 40 },
   })
   if name_event ~= 1 then
     return
@@ -136,6 +137,7 @@ function M:entry(job)
     local confirm, confirm_event = ya.input({
       title = "Overwrite " .. output_name .. "? (y/N)",
       position = { "top-center", y = 3, w = 40 },
+      pos = { "top-center", y = 3, w = 40 },
     })
     if not (confirm_event == 1 and confirm:lower() == "y") then
       return
