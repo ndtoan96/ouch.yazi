@@ -7,8 +7,9 @@ function M:peek(job)
       :stderr(Command.PIPED)
       :spawn()
   local limit = job.area.h
+  local icon = job.args.icon or "\u{1f4c1} "
   local file_name = string.match(tostring(job.file.url), ".*[/\\](.*)")
-  local lines = string.format("\u{1f4c1} %s\n", file_name)
+  local lines = string.format("%s%s\n", icon, file_name)
   local num_lines = 1
   local num_skip = 0
   repeat
