@@ -1,11 +1,15 @@
 local M = {}
 
 function M:peek(job)
-  local child = Command("ouch")
-      :arg({ "l", "-t", "-y", tostring(job.file.url) })
+  local cmd = Command("ouch"):arg("l")
+  if job.args.tree ~= 'false' then
+    cmd:arg("-t")
+  end
+  cmd:arg({ "-y", tostring(job.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
-      :spawn()
+
+  local child = cmd:spawn()
   local limit = job.area.h
   local icon = job.args.icon or "\u{1f4c1} "
   local file_name = string.match(tostring(job.file.url), ".*[/\\](.*)")
