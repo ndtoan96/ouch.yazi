@@ -1,5 +1,36 @@
 local M = {}
 
+-- Extract the tree prefix (if any) from a line
+local function get_tree_prefix(line)
+  local _, prefix_len = line:find("─ ", 1, true)
+  if prefix_len then
+    return line:sub(1, prefix_len)
+  else
+    return ""
+  end
+end
+
+-- Add a filetype icon to a line
+local function line_with_icon(line)
+  line = line:gsub("[\r\n]+$", "") -- Trailing newlines mess with filetype detection
+
+  local tree_prefix = get_tree_prefix(line)
+  local url = line:sub(#tree_prefix + 1)
+  local icon = File({
+    url = Url(url),
+    cha = Cha {
+      mode = tonumber(url:sub(-1) == "/" and "40700" or "100644", 8),
+      kind = url:sub(-1) == "/" and 1 or 0, -- For Yazi <25.9.x compatibility
+    }
+  }):icon()
+
+  if icon then
+    line =  ui.Line { tree_prefix, ui.Span(icon.text .. " "):style(icon.style), url }
+  end
+
+  return line
+end
+
 function M:peek(job)
   local cmd = Command("ouch"):arg("l")
   if job.args.tree ~= 'false' then
@@ -11,10 +42,9 @@ function M:peek(job)
 
   local child = cmd:spawn()
   local limit = job.area.h
-  local icon = job.args.icon or "\u{1f4c1} "
+  local archive_icon = job.args.archive_icon or "\u{1f4c1} "
   local file_name = string.match(tostring(job.file.url), ".*[/\\](.*)")
-  local lines = string.format("%s%s\n", icon, file_name)
-  local num_lines = 1
+  local lines = { string.format(" %s%s", archive_icon, file_name) }
   local num_skip = 0
   repeat
     local line, event = child:read_line()
@@ -26,19 +56,22 @@ function M:peek(job)
 
     if line:find('Archive', 1, true) ~= 1 and line:find('[INFO]', 1, true) ~= 1 then
       if num_skip >= job.skip then
-        lines = lines .. line
-        num_lines = num_lines + 1
+        if job.args.file_icons then
+          line = line_with_icon(line)
+        end
+        line = ui.Line { " ", line }
+        table.insert(lines, line)
       else
         num_skip = num_skip + 1
       end
     end
-  until num_lines >= limit
+  until #lines >= limit
 
   child:start_kill()
-  if job.skip > 0 and num_lines < limit then
+  if job.skip > 0 and #lines < limit then
     ya.emit(
       "peek",
-      { tostring(math.max(0, job.skip - (limit - num_lines))), only_if = tostring(job.file.url), upper_bound = "" }
+      { tostring(math.max(0, job.skip - (limit - #lines))), only_if = tostring(job.file.url), upper_bound = "" }
     )
   else
     ya.preview_widget(job, { ui.Text(lines):area(job.area) })
