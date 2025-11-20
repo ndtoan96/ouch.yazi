@@ -56,6 +56,11 @@ function M:peek(job)
 
     if line:find('Archive', 1, true) ~= 1 and line:find('[INFO]', 1, true) ~= 1 then
       if num_skip >= job.skip then
+        -- Disable file icons for error output
+        if #lines == 1 and line:find ('[ERROR]', 1, true) == 1 then
+          job.args.file_icons = false
+        end
+
         if job.args.file_icons then
           line = line_with_icon(line)
         end
