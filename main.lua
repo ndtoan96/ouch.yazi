@@ -33,7 +33,7 @@ end
 
 function M:peek(job)
   local cmd = Command("ouch"):arg("l")
-  if job.args.list_view then
+  if not job.args.list_view then
     cmd:arg("-t")
   end
   cmd:arg({ "-y", tostring(job.file.url) })
