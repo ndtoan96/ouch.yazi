@@ -67,13 +67,13 @@ prepend_previewers = [
 	{ ..., run = "ouch --archive-icon=''" },
 
 	# Enable file icons
-	{ ..., run = "ouch --file-icons" },
+	{ ..., run = "ouch --show-file-icons" },
 
 	# Disable tree view
-	{ ..., run = "ouch --tree=false" },
+	{ ..., run = "ouch --list-view" },
 
 	# These can be combined
-	{ ..., run = "ouch --archive-icon=' ' --file-icons --tree=false" },
+	{ ..., run = "ouch --archive-icon=' ' --show-file-icons --list-view" },
 ]
 ```
 
