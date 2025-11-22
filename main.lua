@@ -56,15 +56,17 @@ function M:peek(job)
 
     if line:find('Archive', 1, true) ~= 1 and line:find('[INFO]', 1, true) ~= 1 then
       if num_skip >= job.skip then
-        -- Disable file icons for error output
-        if #lines == 1 and line:find ('[ERROR]', 1, true) == 1 then
-          job.args.show_file_icons = false
+        if job.args.show_file_icons then
+          if line:find ('[ERROR]', 1, true) == 1 then
+            -- On error, disable file icons for the rest of the output
+            job.args.show_file_icons = false
+          elseif line:find ('[WARNING]', 1, true) ~= 1 then
+            -- Show icons for non-warning lines only
+            line = line_with_icon(line)
+          end
         end
 
-        if job.args.show_file_icons then
-          line = line_with_icon(line)
-        end
-        line = ui.Line { " ", line }
+        line = ui.Line { " ", line } -- One space padding
         table.insert(lines, line)
       else
         num_skip = num_skip + 1
