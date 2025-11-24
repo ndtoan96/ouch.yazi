@@ -62,7 +62,7 @@ Previews can be customized by adding extra arguments in the `run` string:
 [plugin]
 prepend_previewers = [
 	# Change the top-level archive icon
-	{ ..., run = "ouch --archive-icon=' '" },
+	{ ..., run = "ouch --archive-icon='🗄️ '" },
 	# Or remove it by setting it to ''
 	{ ..., run = "ouch --archive-icon=''" },
 
