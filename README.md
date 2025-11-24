@@ -73,7 +73,7 @@ prepend_previewers = [
 	{ ..., run = "ouch --list-view" },
 
 	# These can be combined
-	{ ..., run = "ouch --archive-icon=' ' --show-file-icons --list-view" },
+	{ ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
 ]
 ```
 
