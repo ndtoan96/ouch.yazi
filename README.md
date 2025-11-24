@@ -35,11 +35,9 @@ Make sure you have [ouch](https://github.com/ouch-org/ouch) installed and in you
 For archive preview, add this to your `yazi.toml`:
 
 ```toml
-[plugin]
-prepend_previewers = [
-	# Archive previewer
-	{ mime = "application/{zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch" },
-]
+[[plugin.prepend_previewers]]
+mime = "application/{zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+run  = "ouch"
 ```
 
 Now go to an archive on Yazi, you should see the archive's content in the preview pane. You can use `J` and `K` to roll up and down the preview.
