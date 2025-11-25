@@ -36,7 +36,7 @@ For archive preview, add this to your `yazi.toml`:
 
 ```toml
 [[plugin.prepend_previewers]]
-mime = "application/{zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
 run  = "ouch"
 ```
 
