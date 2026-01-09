@@ -170,7 +170,6 @@ function M:entry(job)
   local output_name, name_event = ya.input({
     title = "Create archive:",
     value = default_name .. "." .. default_fmt,
-    position = { "top-center", y = 3, w = 40 },
     pos = { "top-center", y = 3, w = 40 },
   })
   if name_event ~= 1 then
@@ -181,7 +180,6 @@ function M:entry(job)
   if file_exists(output_name) then
     local confirm, confirm_event = ya.input({
       title = "Overwrite " .. output_name .. "? (y/N)",
-      position = { "top-center", y = 3, w = 40 },
       pos = { "top-center", y = 3, w = 40 },
     })
     if not (confirm_event == 1 and confirm:lower() == "y") then
