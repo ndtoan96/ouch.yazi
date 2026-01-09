@@ -66,7 +66,7 @@ prepend_previewers = [
 ```
 
 ### Compression
-For compession, add this to your `keymap.toml`:
+For compression, add this to your `keymap.toml`:
 
 ```toml
 [[mgr.prepend_keymap]]
