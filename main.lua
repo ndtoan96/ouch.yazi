@@ -123,8 +123,8 @@ local get_compression_target = ya.sync(function()
     end
   else
     default_name = tab.current.cwd.name
-    for _, url in pairs(tab.selected) do
-      table.insert(paths, tostring(url))
+    for _, file in pairs(tab.selected) do
+      table.insert(paths, tostring(file.url))
     end
     -- The compression targets are aquired, now unselect them
     ya.emit("escape", {})
