@@ -133,8 +133,12 @@ local get_compression_target = ya.sync(function()
 end)
 
 local function invoke_compress_command(paths, name)
+  if name:sub(1, 1) == "-" then
+    name = "./" .. name
+  end
+
   local cmd_output, err_code = Command("ouch")
-      :arg({ "c", "-y" })
+      :arg({ "c", "-y", "--" })
       :arg(paths)
       :arg(name)
       :stderr(Command.PIPED)
