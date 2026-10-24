@@ -92,6 +92,9 @@ prepend_previewers = [
 	# Disable tree view
 	{ ..., run = "ouch --list-view" },
 
+  # Overwrite archive format
+  { ..., run = "ouch --format=zip" },
+
 	# These can be combined
 	{ ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
 ]

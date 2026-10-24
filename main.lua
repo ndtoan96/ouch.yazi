@@ -37,6 +37,9 @@ function M:peek(job)
   if not job.args.list_view then
     cmd:arg("-t")
   end
+  if job.args.format then
+    cmd:arg({"-f", job.args.format})
+  end
   cmd:arg({ "-y", tostring(job.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
